@@ -18,7 +18,8 @@ export async function run() {
   /**
    * Insert your Outlook code here
    */
-  document.getElementById("run").innerText = 'Running...'
+  const running = document.getElementById("run")
+  running.innerText = 'Running...'
   const item = Office.context.mailbox.item;
 
   const body: Office.AsyncResult<string> = await new Promise((resolve, reject) => {
@@ -41,10 +42,8 @@ export async function run() {
       'cache-control': 'no-cache',
       'content-type': 'application/json',
       'cookie': '_ga=GA1.1.274938184.1694205355; _ga_R1FN4KJKJH=GS1.1.1703357946.3.1.1703358770.0.0.0; _ga_MH88ELNX5E=GS1.1.1714573613.17.1.1714573660.0.0.0',
-      'origin': 'https://chat.semibit.in',
       'pragma': 'no-cache',
       'priority': 'u=1, i',
-      'referer': 'https://chat.semibit.in/',
       'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
       'sec-ch-ua-mobile': '?0',
       'sec-ch-ua-platform': '"Windows"',
@@ -72,10 +71,6 @@ export async function run() {
   div.innerHTML = `<div style='width:250px;'>${q}</div>`;
   insertAt.appendChild(div);
   insertAt.appendChild(document.createElement("br"));
-  for (let key of Object.keys(item)) {
-    if (typeof item[key] == 'string')
-      insertAt.appendChild(document.createTextNode(`${key} = ${item[key]}`));
-    insertAt.appendChild(document.createElement("br"));
-  }
-  insertAt.appendChild(document.createElement("br"));
+
+  running.innerText = ''
 }
